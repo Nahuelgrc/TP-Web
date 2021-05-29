@@ -3,7 +3,7 @@
     <q-header elevated class="bg-light-green">
       <q-toolbar>
         <q-btn
-          v-if="$store.state.user.isAdmin"
+          v-if="$store.state.user.isAdmin && $store.state.user.isLoggedIn"
           flat
           dense
           round
@@ -15,7 +15,7 @@
           to="/"
           class="text-white text-bold"
           style="text-decoration: none; font-size: 2.8em;"
-          >Shop</router-link
+          >BananaShop</router-link
         >
         <q-space></q-space>
         <q-btn flat round dense icon="shopping_cart">
@@ -23,7 +23,23 @@
             $store.state.user.cart.length
           }}</q-badge>
         </q-btn>
-        <q-btn flat round dense icon="account_circle" />
+
+        <div v-if="$store.state.user.isLoggedIn" style="padd">
+          <q-fab v-model="fab" icon="account_circle" direction="down">
+            <q-fab-action
+              color="orange"
+              @click="handleProfile"
+              icon="account_circle"
+              label="Edit Profile"
+            ></q-fab-action>
+            <q-fab-action
+              color="brown"
+              @click="handleLogout"
+              icon="logout"
+              label="Logout"
+            ></q-fab-action>
+          </q-fab>
+        </div>
         <div v-if="!$store.state.user.isLoggedIn">
           <q-btn flat rounded to="login" float-right>
             Login
@@ -35,9 +51,8 @@
       </q-toolbar>
     </q-header>
     <q-drawer
-      v-if="leftDrawerOpen"
+      v-if="leftDrawerOpen && $store.state.user.isAdmin"
       v-model="leftDrawerOpen"
-      show-if-above
       bordered
       content-class="bg-grey-1"
     >
@@ -76,8 +91,15 @@ export default {
   data() {
     return {
       leftDrawerOpen: false,
-      links: linksData
+      links: linksData,
+      fab: false
     };
+  },
+  methods: {
+    handleProfile() {
+    },
+    handleLogout(test) {
+    }
   }
 };
 </script>
