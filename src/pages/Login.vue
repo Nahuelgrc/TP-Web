@@ -37,7 +37,10 @@
             />
           </q-card-actions>
           <q-card-section class="text-center q-pa-none">
-            <p class="text-grey-6">Not registered? Create an Account</p>
+            Not registered?
+            <router-link to="/SignUp" class="text-bold link-color" 
+              >Create an Account</router-link
+            >
           </q-card-section>
         </q-card>
       </div>
@@ -48,6 +51,7 @@
 
 <script>
 import { LOGIN } from '../store/user/types';
+import './Pages.scss';
 
 export default {
   name: 'Login',

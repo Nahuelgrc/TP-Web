@@ -36,9 +36,6 @@
               v-on:click="login"
             />
           </q-card-actions>
-          <q-card-section class="text-center q-pa-none">
-            <p class="text-grey-6">Not registered? Create an Account</p>
-          </q-card-section>
         </q-card>
       </div>
       <q-item-label />
@@ -48,6 +45,7 @@
 
 <script>
 import { LOGIN } from '../store/user/types';
+import './Pages.scss';
 
 export default {
   name: 'Login',
