@@ -11,35 +11,40 @@
           aria-label="Menu"
           @click="leftDrawerOpen = !leftDrawerOpen"
         />
-        <router-link
-          to="/"
-          class="text-white text-bold"
-          style="text-decoration: none; font-size: 2.8em;"
+        <router-link to="/" class="text-white text-bold title"
           >BananaShop</router-link
         >
-        <q-space></q-space>
-        <q-btn flat round dense icon="shopping_cart">
-          <q-badge floating color="red">{{
-            $store.state.user.cart.length
-          }}</q-badge>
-        </q-btn>
 
-        <div v-if="$store.state.user.isLoggedIn" style="padd">
-          <q-fab v-model="fab" icon="account_circle" direction="down">
-            <q-fab-action
-              color="orange"
-              @click="handleProfile"
-              icon="account_circle"
-              label="Edit Profile"
-            ></q-fab-action>
-            <q-fab-action
-              color="brown"
-              @click="handleLogout"
-              icon="logout"
-              label="Logout"
-            ></q-fab-action>
-          </q-fab>
+        <q-space></q-space>
+        <div class="shopping-bag">
+          <q-btn flat round dense icon="shopping_bag">
+            <q-badge floating color="red">{{
+              $store.state.user.cart.length
+            }}</q-badge>
+          </q-btn>
         </div>
+
+        <q-fab
+          v-if="$store.state.user.isLoggedIn"
+          v-model="fab"
+          icon="account_circle"
+          direction="down"
+          vertical-actions-align="right"
+        >
+          <q-fab-action
+            color="orange"
+            @click="handleProfile"
+            icon="account_circle"
+            label="Edit Profile"
+          ></q-fab-action>
+          <q-fab-action
+            color="brown"
+            @click="handleLogout"
+            icon="logout"
+            label="Logout"
+          ></q-fab-action>
+        </q-fab>
+
         <div v-if="!$store.state.user.isLoggedIn">
           <q-btn flat rounded to="login" float-right>
             Login
@@ -71,6 +76,7 @@
 
 <script>
 import AdminPanel from 'src/components/AdminPanel.vue';
+import './MainLayout.scss';
 
 const linksData = [
   {
@@ -96,10 +102,8 @@ export default {
     };
   },
   methods: {
-    handleProfile() {
-    },
-    handleLogout(test) {
-    }
+    handleProfile() {},
+    handleLogout() {}
   }
 };
 </script>
