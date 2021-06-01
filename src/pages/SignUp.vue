@@ -1,50 +1,69 @@
 <template>
   <q-page class="row justify-center items-center">
     <div class="column">
-      <div class="row">
-        <h5 class="text-h5 text-white q-my-md">Login</h5>
-      </div>
-      <div class="row">
-        <q-card square bordered class="q-pa-lg shadow-1">
-          <q-card-section>
-            <q-form class="q-gutter-md">
-              <q-input
-                square
-                filled
-                clearable
-                v-model="username"
-                type="text"
-                label="Username"
-              />
-              <q-input
-                square
-                filled
-                clearable
-                v-model="password"
-                type="password"
-                label="Password"
-              />
-            </q-form>
-          </q-card-section>
-          <q-card-actions class="q-px-md">
-            <q-btn
-              unelevated
-              color="light-green-7"
-              size="lg"
-              class="full-width"
-              label="Login"
-              v-on:click="login"
+      <q-card square bordered class="q-pa-lg shadow-1">
+        <q-card-section>
+          <q-form class="q-gutter-md">
+            <q-input
+              square
+              filled
+              clearable
+              v-model="username"
+              type="text"
+              label="Username"
             />
-          </q-card-actions>
-        </q-card>
-      </div>
-      <q-item-label />
+            <q-input
+              square
+              filled
+              clearable
+              v-model="firstname"
+              type="text"
+              label="First name"
+            />
+            <q-input
+              square
+              filled
+              clearable
+              v-model="lastname"
+              type="text"
+              label="Last name"
+            />
+            <q-input
+              square
+              filled
+              clearable
+              v-model="email"
+              type="email"
+              label="Email"
+            />
+            <q-input
+              square
+              filled
+              clearable
+              v-model="password"
+              type="password"
+              label="Password"
+            />
+          </q-form>
+        </q-card-section>
+        <q-card-actions class="q-px-md">
+          <q-btn
+            unelevated
+            color="light-green-7"
+            size="lg"
+            class="full-width"
+            label="Sign Up"
+            v-on:click="signUp"
+          />
+        </q-card-actions>
+      </q-card>
     </div>
+    <q-item-label />
   </q-page>
 </template>
 
 <script>
-import { LOGIN } from '../store/user/types';
+import { SIGNUP } from '../store/user/types';
 import './Pages.scss';
 
 export default {
@@ -52,13 +71,15 @@ export default {
   data: () => {
     return {
       username: '',
-      password: '',
-      showLoginError: false
+      firstname: '',
+      lastname: '',
+      email: '',
+      password: ''
     };
   },
   methods: {
-    login() {
-      this.$store.dispatch(LOGIN, {
+    signUp() {
+      this.$store.dispatch(SIGNUP, {
         username: this.username,
         password: this.password
       });
