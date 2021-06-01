@@ -2,15 +2,14 @@
   <div class="q-pa-md row items-start q-gutter-md">
     <q-card class="my-card">
       <q-card-section>
-        <img src="..\assets\productImages\Product001.jpg" width="250px" class="center" />
-        <div class="text-h6">Our Changing Planet</div>
-        <div class="text-subtitle2">$20.84</div>
+        <img src="../assets/products/Product001.jpg" width="268px" class="center" />
+        asdfasdf
+        <img :src="imageSrc" width="268px" class="center" />
+        <div class="text-h6">{{ name }}</div>
+        <div class="text-subtitle2">${{ price }}</div>
       </q-card-section>
       <q-card-section>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat
+        {{ description }}
       </q-card-section>
       <q-separator></q-separator>
 
@@ -23,9 +22,25 @@
 
 <script>
 import './components.scss';
-
 export default {
   name: 'ProductCard',
+  props: {
+    name: {
+      type: String,
+      required: true
+    },
+    description: {
+      type: String,
+      required: true
+    },
+    imageSrc: {
+      type: String,
+      required: true
+    },
+    price: {
+      type: Number,
+      required: true
+    }
+  }
 };
-
 </script>

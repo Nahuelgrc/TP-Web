@@ -8,7 +8,6 @@ export default {
         username: username,
         password: password
       });
-      console.log('LLEGÓ!', response);
     } catch (err) {
       const { response } = err;
       if (response.status === 401) {
