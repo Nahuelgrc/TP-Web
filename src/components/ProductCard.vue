@@ -2,8 +2,6 @@
   <div class="q-pa-md row items-start q-gutter-md">
     <q-card class="my-card">
       <q-card-section>
-        <img src="../assets/products/Product001.jpg" width="268px" class="center" />
-        asdfasdf
         <img :src="imageSrc" width="268px" class="center" />
         <div class="text-h6">{{ name }}</div>
         <div class="text-subtitle2">${{ price }}</div>
