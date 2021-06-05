@@ -12,17 +12,22 @@
       <q-separator></q-separator>
 
       <q-card-actions vertical>
-        <q-btn rounded color="light-green">Add to cart</q-btn>
+        <q-btn rounded color="light-green" v-on:click="handleClick">Add to cart</q-btn>
       </q-card-actions>
     </q-card>
   </div>
 </template>
 
 <script>
+import { ADD_TO_CART } from '../store/user/types';
 import './components.scss';
 export default {
   name: 'ProductCard',
   props: {
+    id: {
+      type: Number,
+      required: true
+    },
     name: {
       type: String,
       required: true
@@ -38,6 +43,17 @@ export default {
     price: {
       type: Number,
       required: true
+    }
+  },
+  methods: {
+    handleClick() {
+      this.$store.dispatch(ADD_TO_CART, {
+        id: this.id,
+        name: this.name,
+        description: this.description,
+        imageSrc: this.imageSrc,
+        price: this.price
+      });
     }
   }
 };
