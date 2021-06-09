@@ -8,13 +8,12 @@ export default {
         username: username,
         password: password
       });
+      commit(LOGIN, response.data);
     } catch (err) {
       const { response } = err;
       if (response.status === 401) {
       }
     }
-    //commit(response.data);
-    //commit('agregarProductos', result);
   },
   [SIGNUP]: async (
     { commit },
