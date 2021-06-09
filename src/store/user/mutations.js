@@ -1,4 +1,4 @@
-import { LOGIN, LOAD_USER_INFO, ADD_TO_CART } from './types';
+import { LOGIN, LOAD_USER_INFO, ADD_TO_CART, LOGOUT } from './types';
 
 export default {
   [LOGIN](state, { email, username, firstname, lastname, role }) {
@@ -7,7 +7,7 @@ export default {
     state.firstname = firstname;
     state.lastname = lastname;
     state.role = role;
-    state.isLoggedIn= true;
+    state.isLoggedIn = true;
     state.isAdmin = role === 'admin' ? true : false;
   },
   [LOAD_USER_INFO](state, data) {
@@ -16,5 +16,14 @@ export default {
   },
   [ADD_TO_CART](state, data) {
     state.cart.push(data);
+  },
+  [LOGOUT](state) {
+    state.isLoggedIn = false;
+    state.isAdmin = false;
+    state.username = '';
+    state.email = '';
+    state.firstname = '';
+    state.lastname = '';
+    state.role = '';
   }
 };

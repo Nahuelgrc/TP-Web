@@ -1,5 +1,12 @@
 import * as axios from 'axios';
-import { LOAD_USER, LOGIN, SIGNUP, PURCHEASE, ADD_TO_CART } from './types';
+import {
+  LOAD_USER,
+  LOGIN,
+  SIGNUP,
+  LOGOUT,
+  PURCHEASE,
+  ADD_TO_CART
+} from './types';
 
 export default {
   [LOGIN]: async ({ commit }, { username, password }) => {
@@ -22,6 +29,9 @@ export default {
     try {
       console.log('llegó');
     } catch (err) {}
+  },
+  [LOGOUT]: async ({ commit }) => {
+    commit(LOGOUT);
   },
   [ADD_TO_CART]: async ({ commit }, data) => {
     commit(ADD_TO_CART, data);

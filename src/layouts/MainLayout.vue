@@ -75,6 +75,7 @@
 </template>
 
 <script>
+import { LOGOUT } from '../store/user/types';
 import AdminPanel from 'src/components/AdminPanel.vue';
 import './MainLayout.scss';
 
@@ -103,7 +104,12 @@ export default {
   },
   methods: {
     handleProfile() {},
-    handleLogout() {}
+    handleLogout() {
+      this.$store.dispatch(LOGOUT);
+      if (this.$route.path != '/') {
+        this.$router.push('/');
+      }
+    }
   }
 };
 </script>
