@@ -52,8 +52,8 @@
             color="light-green-7"
             size="lg"
             class="full-width"
-            label="Sign Up"
-            v-on:click="signUp"
+            label="Save"
+            v-on:click="save"
           />
         </q-card-actions>
       </q-card>
@@ -63,11 +63,12 @@
 </template>
 
 <script>
-import { SIGNUP } from '../store/user/types';
+import { mapState } from 'vuex';
+import { UPDATE_USER_INFO } from '../store/user/types';
 import './Pages.scss';
 
 export default {
-  name: 'SignUp',
+  name: 'Profile',
   data: () => {
     return {
       username: '',
@@ -78,7 +79,7 @@ export default {
     };
   },
   methods: {
-    signUp() {
+    save() {
       const payload = {
         username: this.username,
         password: this.password,
@@ -86,8 +87,8 @@ export default {
         lastname: this.lastname,
         email: this.email
       };
-      this.$store.dispatch(SIGNUP, payload);
-      this.$router.push('/') 
+      this.$store.dispatch(UPDATE_USER_INFO, payload);
+      this.$router.push('/');
     }
   }
 };

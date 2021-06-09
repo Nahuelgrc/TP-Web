@@ -103,7 +103,11 @@ export default {
     };
   },
   methods: {
-    handleProfile() {},
+    handleProfile() {
+      if (this.$route.path != '/profile') {
+        this.$router.push('/profile');
+      }
+    },
     handleLogout() {
       this.$store.dispatch(LOGOUT);
       if (this.$route.path != '/') {
