@@ -1,4 +1,4 @@
-import { LOGIN, LOAD_USER_INFO, ADD_TO_CART, LOGOUT } from './types';
+import { LOGIN, UPDATE_USER_INFO , ADD_TO_CART, LOGOUT } from './types';
 
 export default {
   [LOGIN](state, { email, username, firstname, lastname, role }) {
@@ -10,7 +10,7 @@ export default {
     state.isLoggedIn = true;
     state.isAdmin = role === 'admin' ? true : false;
   },
-  [LOAD_USER_INFO](state, data) {
+  [UPDATE_USER_INFO](state, data) {
     console.log('state', state);
     console.log('data', data);
   },

@@ -79,10 +79,15 @@ export default {
   },
   methods: {
     signUp() {
-      this.$store.dispatch(SIGNUP, {
+      const payload = {
         username: this.username,
-        password: this.password
-      });
+        password: this.password,
+        firstname: this.firstname,
+        lastname: this.lastname,
+        email: this.email
+      };
+      this.$store.dispatch(SIGNUP, payload);
+      this.$router.push('/') 
     }
   }
 };

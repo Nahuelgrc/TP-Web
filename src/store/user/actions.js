@@ -12,8 +12,8 @@ export default {
   [LOGIN]: async ({ commit }, { username, password }) => {
     try {
       const response = await axios.post(`${process.env.SERVER_URL}/login`, {
-        username: username,
-        password: password
+        username,
+        password
       });
       commit(LOGIN, response.data);
     } catch (err) {
@@ -24,11 +24,15 @@ export default {
   },
   [SIGNUP]: async (
     { commit },
-    { username, password, email, firstname, lastname }
+    data
   ) => {
     try {
-      console.log('llegó');
-    } catch (err) {}
+      await axios.post(`${process.env.SERVER_URL}/user`, data);
+      data.role = 'user';
+      commit(LOGIN, data)
+    } catch (err) {
+      console.log(err);
+    }
   },
   [LOGOUT]: async ({ commit }) => {
     commit(LOGOUT);
