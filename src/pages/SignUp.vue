@@ -53,7 +53,7 @@
             size="lg"
             class="full-width"
             label="Sign Up"
-            v-on:click="signUp"
+            v-on:click="handleSignUp"
           />
         </q-card-actions>
       </q-card>
@@ -78,7 +78,7 @@ export default {
     };
   },
   methods: {
-    signUp() {
+    handleSignUp() {
       const payload = {
         username: this.username,
         password: this.password,

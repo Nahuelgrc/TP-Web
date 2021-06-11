@@ -8,14 +8,6 @@
               square
               filled
               clearable
-              v-model="username"
-              type="text"
-              label="Username"
-            />
-            <q-input
-              square
-              filled
-              clearable
               v-model="firstname"
               type="text"
               label="First name"
@@ -42,7 +34,7 @@
               clearable
               v-model="password"
               type="password"
-              label="Password"
+              label="New password"
             />
           </q-form>
         </q-card-section>
@@ -53,7 +45,7 @@
             size="lg"
             class="full-width"
             label="Save"
-            v-on:click="save"
+            v-on:click="handleSave()"
           />
         </q-card-actions>
       </q-card>
@@ -63,7 +55,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import { UPDATE_USER_INFO } from '../store/user/types';
 import './Pages.scss';
 
@@ -71,21 +62,24 @@ export default {
   name: 'Profile',
   data: () => {
     return {
-      username: '',
       firstname: '',
       lastname: '',
       email: '',
       password: ''
     };
   },
+  mounted() {
+    this.firstname = this.$store.state.user.firstname;
+    this.lastname = this.$store.state.user.lastname;
+    this.email = this.$store.state.user.email;
+  },
   methods: {
-    save() {
+    handleSave() {
       const payload = {
-        username: this.username,
-        password: this.password,
         firstname: this.firstname,
         lastname: this.lastname,
-        email: this.email
+        email: this.email,
+        password: this.password
       };
       this.$store.dispatch(UPDATE_USER_INFO, payload);
       this.$router.push('/');

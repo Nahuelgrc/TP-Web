@@ -1,7 +1,8 @@
 import { LOGIN, UPDATE_USER_INFO , ADD_TO_CART, LOGOUT } from './types';
 
 export default {
-  [LOGIN](state, { email, username, firstname, lastname, role }) {
+  [LOGIN](state, { id, email, username, firstname, lastname, role }) {
+    state.id = id;
     state.email = email;
     state.username = username;
     state.firstname = firstname;
@@ -25,5 +26,8 @@ export default {
     state.firstname = '';
     state.lastname = '';
     state.role = '';
+  },
+  [UPDATE_USER_INFO](state) {
+    //TODO
   }
 };
