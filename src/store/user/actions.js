@@ -39,7 +39,11 @@ export default {
     commit(ADD_TO_CART, data);
   },
   [UPDATE_USER_INFO]: async ({ commit }, data) => {
-    await axios.put(`${process.env.SERVER_URL}/user`, data);
-    commit(UPDATE_USER_INFO, data);
+    try {
+      await axios.put(`${process.env.SERVER_URL}/user`, data);
+      commit(UPDATE_USER_INFO, data);
+    } catch (err) {
+      console.log(err);
+    }
   }
 };

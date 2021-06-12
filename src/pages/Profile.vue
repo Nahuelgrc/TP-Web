@@ -76,6 +76,7 @@ export default {
   methods: {
     handleSave() {
       const payload = {
+        id: this.$store.state.user.id,
         firstname: this.firstname,
         lastname: this.lastname,
         email: this.email,
