@@ -1,4 +1,5 @@
-export const LOAD_USER = 'loadUser';
+export const LOAD_USERS = 'loadUsers';
+export const DELETE_USERS  = 'deleteUser';
 export const LOGIN = 'login';
 export const SIGNUP = 'signUp';
 export const LOGOUT = 'logOut';

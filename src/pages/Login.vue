@@ -29,7 +29,7 @@
             size="lg"
             class="full-width"
             label="Login"
-            v-on:click="login"
+            v-on:click="handleLogin"
           />
         </q-card-actions>
         <q-card-section class="text-center">
@@ -58,7 +58,7 @@ export default {
     };
   },
   methods: {
-    login() {
+    handleLogin() {
       this.$store.dispatch(LOGIN, {
         username: this.username,
         password: this.password

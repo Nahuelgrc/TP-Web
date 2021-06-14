@@ -1,10 +1,10 @@
 import * as axios from 'axios';
 import {
-  LOAD_USER,
+  LOAD_USERS,
   LOGIN,
   SIGNUP,
   LOGOUT,
-  PURCHEASE,
+  DELETE_USERS,
   ADD_TO_CART,
   UPDATE_USER_INFO
 } from './types';
@@ -42,6 +42,24 @@ export default {
     try {
       await axios.put(`${process.env.SERVER_URL}/user`, data);
       commit(UPDATE_USER_INFO, data);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  [LOAD_USERS]: async () => {
+    try {
+      var response = await axios.get(`${process.env.SERVER_URL}/users`);
+      return response.data;
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  [DELETE_USERS]: async ({ commit }, users) => {
+    try {
+      const data = {
+        ids: users.map(a => a.id)
+      };
+      await axios.delete(`${process.env.SERVER_URL}/users`, { data });
     } catch (err) {
       console.log(err);
     }
