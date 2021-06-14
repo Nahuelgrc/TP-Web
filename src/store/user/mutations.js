@@ -26,8 +26,5 @@ export default {
     state.firstname = '';
     state.lastname = '';
     state.role = '';
-  },
-  [UPDATE_USER_INFO](state) {
-    //TODO
   }
 };
