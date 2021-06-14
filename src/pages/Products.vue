@@ -109,10 +109,7 @@ export default {
       }
     },
     async handleAdd() {
-      if (this.selected.length > 0) {
-        await this.$store.dispatch(DELETE_PRODUCTS, this.selected);
-        this.data = await this.$store.dispatch(GET_PRODUCTS);
-      }
+      this.$router.push('/product/add');
     }
   }
 };

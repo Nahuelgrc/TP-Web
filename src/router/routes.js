@@ -23,6 +23,10 @@ const routes = [
       {
         path: '/profile',
         component: () => import('pages/Profile.vue')
+      },
+      {
+        path: '/product/add',
+        component: () => import('pages/AddProduct.vue')
       }
     ]
   },

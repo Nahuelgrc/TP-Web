@@ -1,5 +1,10 @@
 import * as axios from 'axios';
-import { LOAD_PRODUCTS, GET_PRODUCTS, DELETE_PRODUCTS } from './types';
+import {
+  LOAD_PRODUCTS,
+  GET_PRODUCTS,
+  DELETE_PRODUCTS,
+  ADD_PRODUCT
+} from './types';
 
 export default {
   [LOAD_PRODUCTS]: async ({ commit }) => {
@@ -24,6 +29,13 @@ export default {
         ids: products.map(a => a.id)
       };
       await axios.delete(`${process.env.SERVER_URL}/products`, { data });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  [ADD_PRODUCT]: async ({ commit }, product) => {
+    try {
+      await axios.post(`${process.env.SERVER_URL}/product`, product);
     } catch (err) {
       console.log(err);
     }
