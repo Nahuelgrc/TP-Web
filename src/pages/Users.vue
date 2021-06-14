@@ -13,9 +13,10 @@
       <q-btn
         color="light-green-7"
         size="md"
-        class=""
+        class="q-mt-md"
         label="Delete"
         v-on:click="handleDelete"
+        :disable="this.selected.length === 0"
       />
     </div>
   </div>
@@ -77,8 +78,8 @@ export default {
     async handleDelete() {
       if (this.selected.length > 0) {
         await this.$store.dispatch(DELETE_USERS, this.selected);
+        this.data = await this.$store.dispatch(LOAD_USERS);
       }
-      this.data = await this.$store.dispatch(LOAD_USERS);
     }
   }
 };
