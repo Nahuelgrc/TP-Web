@@ -7,16 +7,38 @@
             <img :src="props.row.imageSrc" width="100px" />
           </q-td>
           <q-td key="name" :props="props">
-            {{ props.row.name }}
+            <div class="text-h6">
+              {{ props.row.name }}
+            </div>
           </q-td>
           <q-td key="quantity" :props="props">
-            <q-btn round dense color="light-green-7" size="xs" icon="remove" />
-            <div class="text-weight-bolder">{{ props.row.quantity }}</div>
-            <q-btn round dense color="light-green-7" size="xs" icon="add" />
+            <q-btn
+              round
+              dense
+              color="light-green-7"
+              size="xs"
+              icon="add"
+              @click="handleIncrement(props.row.id)"
+            />
+            <div class="text-weight-bolder">
+              {{ props.row.quantity }}
+            </div>
+            <q-btn
+              round
+              dense
+              color="light-green-7"
+              size="xs"
+              icon="remove"
+              @click="handleDecrement(props.row.id)"
+            />
           </q-td>
-          <q-td key="price" :props="props"> ${{ props.row.price }} </q-td>
+          <q-td key="price" :props="props">
+            <div class="text-h6">${{ props.row.price }}</div></q-td
+          >
           <q-td key="total" :props="props">
-            <q-badge color="green"> ${{ props.row.quantity * props.row.price }} </q-badge>
+            <q-badge color="green" class="text-h6">
+              ${{ props.row.quantity * props.row.price }}
+            </q-badge>
           </q-td>
         </q-tr>
       </template>
@@ -27,12 +49,13 @@
       class="q-mt-md"
       label="Buy"
       v-on:click="handleBuy"
+      :disable="this.data.length <= 0"
     />
   </div>
 </template>
 
 <script>
-import { GET_PRODUCTS, DELETE_PRODUCTS } from '../store/product/types';
+import { INCREMENT_PRODUCT, DECREMENT_PRODUCT } from '../store/user/types';
 
 export default {
   name: 'Cart',
@@ -78,17 +101,17 @@ export default {
   },
   computed: {},
   async mounted() {
-    this.data = this.$store.getters.getProcessedCart;
+    this.data = this.$store.state.user.cart;
   },
   methods: {
-    async handleDelete() {
-      if (this.selected.length > 0) {
-        await this.$store.dispatch(DELETE_PRODUCTS, this.selected);
-        this.data = await this.$store.dispatch(GET_PRODUCTS);
-      }
-    },
-    async handleBuy() {
+    handleBuy() {
       this.$router.push('/cart');
+    },
+    handleIncrement(id) {
+      this.$store.commit(INCREMENT_PRODUCT, id);
+    },
+    handleDecrement(id) {
+      this.$store.commit(DECREMENT_PRODUCT, id);
     }
   }
 };

@@ -1,4 +1,11 @@
-import { LOGIN, UPDATE_USER_INFO , ADD_TO_CART, LOGOUT } from './types';
+import {
+  LOGIN,
+  UPDATE_USER_INFO,
+  ADD_TO_CART,
+  LOGOUT,
+  INCREMENT_PRODUCT,
+  DECREMENT_PRODUCT
+} from './types';
 
 export default {
   [LOGIN](state, { id, email, username, firstname, lastname, role }) {
@@ -11,12 +18,17 @@ export default {
     state.isLoggedIn = true;
     state.isAdmin = role === 'admin' ? true : false;
   },
-  [UPDATE_USER_INFO](state, data) {
-    console.log('state', state);
-    console.log('data', data);
-  },
+  [UPDATE_USER_INFO](state, data) {},
   [ADD_TO_CART](state, data) {
-    state.cart.push(data);
+    const product = state.cart.find(x => x.id === data.id);
+    if (!product) {
+      state.cart.push({
+        ...data,
+        quantity: 1
+      });
+    } else {
+      product.quantity++;
+    }
   },
   [LOGOUT](state) {
     state.isLoggedIn = false;
@@ -26,5 +38,22 @@ export default {
     state.firstname = '';
     state.lastname = '';
     state.role = '';
+  },
+  [INCREMENT_PRODUCT](state, id) {
+    const result = state.cart.find(x => x.id === id);
+    result.quantity++;
+  },
+  [DECREMENT_PRODUCT](state, id) {
+    const result = state.cart.find(x => x.id === id);
+    if (result.quantity > 0) {
+      result.quantity--;
+    }
+
+    if (result.quantity === 0) {
+      var index = state.cart.findIndex(o => {
+        return o.id === id;
+      });
+      if (index !== -1) state.cart.splice(index, 1);
+    }
   }
 };

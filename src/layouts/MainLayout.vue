@@ -19,7 +19,7 @@
         <div class="shopping-bag">
           <q-btn flat round dense icon="shopping_bag" @click="handleCartClick">
             <q-badge floating color="red">{{
-              $store.state.user.cart.length
+              this.getTotalCartItems
             }}</q-badge>
           </q-btn>
         </div>
@@ -77,6 +77,7 @@
 <script>
 import { LOGOUT } from '../store/user/types';
 import AdminPanel from 'src/components/AdminPanel.vue';
+import { mapGetters } from 'vuex';
 import './MainLayout.scss';
 
 const linksData = [
@@ -102,6 +103,9 @@ export default {
       fab: false
     };
   },
+  computed: {
+    ...mapGetters({ getTotalCartItems: 'getTotalCartItems' })
+  },
   methods: {
     handleProfile() {
       if (this.$route.path != '/profile') {
@@ -117,8 +121,8 @@ export default {
     handleCartClick() {
       // if (this.$store.state.user.isLoggedIn) {
       //   if (this.$route.path != '/cart') {
-          this.$router.push('/cart');
-        // }
+      this.$router.push('/cart');
+      // }
       // } else {
       //   if (this.$route.path != '/login') {
       //     this.$router.push('/login');
