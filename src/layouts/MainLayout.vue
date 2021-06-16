@@ -17,7 +17,7 @@
 
         <q-space></q-space>
         <div class="shopping-bag">
-          <q-btn flat round dense icon="shopping_bag">
+          <q-btn flat round dense icon="shopping_bag" @click="handleCartClick">
             <q-badge floating color="red">{{
               $store.state.user.cart.length
             }}</q-badge>
@@ -113,6 +113,17 @@ export default {
       if (this.$route.path != '/') {
         this.$router.push('/');
       }
+    },
+    handleCartClick() {
+      // if (this.$store.state.user.isLoggedIn) {
+      //   if (this.$route.path != '/cart') {
+          this.$router.push('/cart');
+        // }
+      // } else {
+      //   if (this.$route.path != '/login') {
+      //     this.$router.push('/login');
+      //   }
+      // }
     }
   }
 };

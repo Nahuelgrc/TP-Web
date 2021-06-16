@@ -76,9 +76,7 @@ export default {
           name: 'imageSrc',
           align: 'center',
           label: 'Image',
-          field: 'imageSrc',
-          format: (val, row) =>
-            '<img :src="imageSrc" width="268px" class="center" />'
+          field: 'imageSrc'
         },
         {
           name: 'price',
