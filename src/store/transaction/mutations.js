@@ -1,11 +1,3 @@
-import { CREATE_TRANSACTION } from './types';
+import {} from './types';
 
-export default {
-  [CREATE_TRANSACTION]: async (data) => {
-    try {
-        //
-    } catch (err) {
-      console.log(err);
-    }
-  }
-};
+export default {};

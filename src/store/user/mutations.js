@@ -4,7 +4,8 @@ import {
   ADD_TO_CART,
   LOGOUT,
   INCREMENT_PRODUCT,
-  DECREMENT_PRODUCT
+  DECREMENT_PRODUCT,
+  BUY_PRODUCTS
 } from './types';
 
 export default {
@@ -55,5 +56,8 @@ export default {
       });
       if (index !== -1) state.cart.splice(index, 1);
     }
+  },
+  [BUY_PRODUCTS](state) {
+    state.cart = [];
   }
 };

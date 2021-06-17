@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import { INCREMENT_PRODUCT, DECREMENT_PRODUCT } from '../store/user/types';
+import { INCREMENT_PRODUCT, DECREMENT_PRODUCT, BUY_PRODUCTS } from '../store/user/types';
 
 export default {
   name: 'Cart',
@@ -105,7 +105,8 @@ export default {
   },
   methods: {
     handleBuy() {
-      this.$router.push('/cart');
+      this.$store.dispatch(BUY_PRODUCTS, {});
+      this.$router.push('/');
     },
     handleIncrement(id) {
       this.$store.commit(INCREMENT_PRODUCT, id);

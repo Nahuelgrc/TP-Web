@@ -6,7 +6,8 @@ import {
   LOGOUT,
   DELETE_USERS,
   ADD_TO_CART,
-  UPDATE_USER_INFO
+  UPDATE_USER_INFO,
+  BUY_PRODUCTS
 } from './types';
 
 export default {
@@ -60,6 +61,21 @@ export default {
         ids: users.map(a => a.id)
       };
       await axios.delete(`${process.env.SERVER_URL}/users`, { data });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  [BUY_PRODUCTS]: async ({ commit, state }) => {
+    try {
+      const data = {
+        user_id: state.id,
+        cart: state.cart
+      };
+      const response = await axios.post(
+        `${process.env.SERVER_URL}/transaction`,
+        data
+      );
+      commit(BUY_PRODUCTS, response.data);
     } catch (err) {
       console.log(err);
     }

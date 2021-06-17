@@ -8,3 +8,4 @@ export const UPDATE_USER_INFO = 'updateUser'
 export const ADD_TO_CART = 'addToCart'
 export const INCREMENT_PRODUCT = 'incrementProduct'
 export const DECREMENT_PRODUCT = 'decrementProduct'
+export const BUY_PRODUCTS = 'buyProducts';
