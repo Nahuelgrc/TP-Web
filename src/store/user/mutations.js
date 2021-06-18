@@ -19,7 +19,12 @@ export default {
     state.isLoggedIn = true;
     state.isAdmin = role === 'admin' ? true : false;
   },
-  [UPDATE_USER_INFO](state, data) {},
+  [UPDATE_USER_INFO](state, data) {
+    state.username = data.username;
+    state.email = data.email;
+    state.firstname = data.firstname;
+    state.lastname = data.lastname;
+  },
   [ADD_TO_CART](state, data) {
     const product = state.cart.find(x => x.id === data.id);
     if (!product) {
