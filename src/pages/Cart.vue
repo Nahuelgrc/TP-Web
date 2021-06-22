@@ -105,8 +105,9 @@ export default {
   },
   methods: {
     handleBuy() {
-      this.$store.dispatch(BUY_PRODUCTS, {});
-      this.$router.push('/');
+      this.$router.push('/payment');
+      // this.$store.dispatch(BUY_PRODUCTS, {});
+      // this.$router.push('/');
     },
     handleIncrement(id) {
       this.$store.commit(INCREMENT_PRODUCT, id);
