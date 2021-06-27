@@ -88,6 +88,11 @@ const linksData = [
     title: 'Products',
     icon: 'inventory_2',
     link: 'products'
+  },
+  {
+    title: 'Transactions',
+    icon: 'paid',
+    link: 'transactions'
   }
 ];
 
