@@ -58,12 +58,14 @@ export default {
     };
   },
   methods: {
-    handleLogin() {
-      this.$store.dispatch(LOGIN, {
+    async handleLogin() {
+      const response = await this.$store.dispatch(LOGIN, {
         username: this.username,
         password: this.password
       });
-      this.$router.push('/') 
+      if (response) {
+        this.$router.push('/');
+      }
     }
   }
 };

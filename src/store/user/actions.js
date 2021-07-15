@@ -18,9 +18,11 @@ export default {
         password
       });
       commit(LOGIN, response.data);
+      return true;
     } catch (err) {
       const { response } = err;
       if (response.status === 401) {
+        return false;
       }
     }
   },
